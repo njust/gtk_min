@@ -1,0 +1,9 @@
+[package]
+name = "gtk_min"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+gtk4-helper = {git = "https://github.com/njust/gtk4-helper.git"}
