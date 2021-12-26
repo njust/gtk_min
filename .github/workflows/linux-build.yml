@@ -23,8 +23,8 @@ jobs:
       - name: Checkout tag
         run: cd gtksourceview && git checkout tags/5.2.0
       - name: Create build dir
-        run: mkdir build
+        run: cd gtksourceview && mkdir build
       - name: Configure
-        run: meson --prefix=/opt/gtk build
+        run: cd gtksourceview && meson --prefix=/opt/gtk build
       - name: Build gtk
-        run: cd build && ninja && ninja install
+        run: cd gtksourceview && cd build && ninja && ninja install
