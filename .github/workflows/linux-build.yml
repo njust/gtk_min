@@ -43,6 +43,8 @@ jobs:
         if: steps.gtk-build-cache.outputs.cache-hit != 'true'
         run: ninja && ninja install
         working-directory: /tmp/gtkbuild
+      - name: Check
+        run: ls -l
       - name: Cargo build
         run: cargo build --release
         env:
