@@ -14,7 +14,7 @@ fn main() {
             .application(app)
             .default_width(320)
             .default_height(200)
-            .title("Hello, World!")
+            .title("Hello, World!!")
             .build();
 
         window.show();
