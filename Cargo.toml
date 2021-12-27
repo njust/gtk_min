@@ -7,3 +7,9 @@ edition = "2018"
 
 [dependencies]
 gtk4-helper = {git = "https://github.com/njust/gtk4-helper.git"}
+
+[profile.release]
+opt-level = 'z' # Optimize for size.
+lto = true
+codegen-units = 1
+panic = 'abort'
