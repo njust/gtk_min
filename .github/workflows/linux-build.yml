@@ -45,3 +45,4 @@ jobs:
         working-directory: /tmp/gtkbuild
       - name: Cargo build
         run: build.sh
+        working-directory: $GITHUB_ACTION_PATH
