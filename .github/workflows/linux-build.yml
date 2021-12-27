@@ -38,3 +38,5 @@ jobs:
       - name: Build gtk
         run: ninja && ninja install
         working-directory: /tmp/gtkbuild
+      - name: Cargo build
+        run: build.sh

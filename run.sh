@@ -1,2 +1,2 @@
 source env.sh
-./target/release/ktail
+./target/release/gtk_min
