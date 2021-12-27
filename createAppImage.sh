@@ -18,8 +18,8 @@ mkdir "$SHARE_DIR"
 cp "target/release/$APP_NAME" "$BIN_DIR/bin"
 cp -r /opt/gtk/lib/x86_64-linux-gnu/* $LIB_DIR
 
-ls -l $LIB_DIR
-du -h -k $LIB_DIR
+ls -lRh $LIB_DIR
+du -k $LIB_DIR -h
 
 APP_RUN_SCRIPT="$TARGET_DIR/AppRun"
 echo '#!/bin/sh
