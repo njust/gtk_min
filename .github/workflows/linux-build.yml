@@ -18,13 +18,24 @@ jobs:
         run: sudo apt-get install -y python3-pip libxkbcommon-dev libcairo2-dev libwayland-dev libxrandr-dev libxi-dev libxcursor-dev libxdamage-dev libxinerama-dev libgstreamer1.0-dev libgstreamer-plugins-bad1.0-dev ninja-build
       - name: Install python modules
         run: sudo python3 -m pip install meson==0.57.1
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: |
+            gtksourceview
+            /opt/gtk
+          key: ${{ runner.os }}-${{ hashFiles('gtksourceview/.git/HEAD') }}
       - name: Clone gtk repo
         run: git clone https://gitlab.gnome.org/GNOME/gtksourceview.git
       - name: Checkout tag
-        run: cd gtksourceview && git checkout tags/5.2.0
+        working-directory: gtksourceview
+        run: git checkout tags/5.2.0
       - name: Create build dir
-        run: cd gtksourceview && mkdir build
+        run: mkdir build
+        working-directory: gtksourceview
       - name: Configure
-        run: cd gtksourceview && meson --prefix=/opt/gtk build
+        run: meson --prefix=/opt/gtk build
+        working-directory: gtksourceview
       - name: Build gtk
-        run: cd gtksourceview && cd build && ninja && ninja install
+        run: ninja && ninja install
+        working-directory: gtksourceview/build
