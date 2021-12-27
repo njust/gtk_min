@@ -30,7 +30,7 @@ jobs:
         working-directory: gtksourceview
         run: git checkout tags/5.2.0
       - name: Create build dir
-        run: mkdir gtkbuild
+        run: mkdir -p gtkbuild
         working-directory: /tmp
       - name: Configure
         run: meson --prefix=/opt/gtk /tmp/gtkbuild
