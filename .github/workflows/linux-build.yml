@@ -44,8 +44,13 @@ jobs:
         run: ninja && ninja install
         working-directory: /tmp/gtkbuild
       - uses: actions/checkout@v2
-      - name: Check
-        run: ls -lR
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-${{ hashFiles('**/Cargo.lock') }}
       - name: Cargo build
         run: cargo build --release
         env:
