@@ -44,5 +44,5 @@ jobs:
         run: ninja && ninja install
         working-directory: /tmp/gtkbuild
       - name: Cargo build
-        run: build.sh
+        run: ll
         working-directory: $GITHUB_ACTION_PATH
