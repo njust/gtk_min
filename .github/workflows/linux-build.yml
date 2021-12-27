@@ -44,7 +44,7 @@ jobs:
         run: ninja && ninja install
         working-directory: /tmp/gtkbuild
       - name: Check
-        run: ls -lR
+        run: cd .. && ls -lR
       - name: Cargo build
         run: cargo build --release
         env:
