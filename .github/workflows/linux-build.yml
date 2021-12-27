@@ -44,5 +44,7 @@ jobs:
         run: ninja && ninja install
         working-directory: /tmp/gtkbuild
       - name: Cargo build
-        run: ll
-        working-directory: $GITHUB_ACTION_PATH
+        run: cargo build --release
+        env:
+          PKG_CONFIG_PATH=/opt/gtk/lib/x86_64-linux-gnu/pkgconfig
+          LD_LIBRARY_PATH=/opt/gtk/lib/x86_64-linux-gnu
