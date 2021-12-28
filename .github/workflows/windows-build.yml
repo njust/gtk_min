@@ -17,6 +17,10 @@ jobs:
     steps:
       - name: Install Windows GNU Toolchain
         run: rustup default stable-x86_64-pc-windows-gnu
+      - name: Create build dir
+        if: steps.gtk-build-cache.outputs.cache-hit != 'true'
+        run: mkdir -p gtkbuild
+        working-directory: /tmp
       - uses: msys2/setup-msys2@v2
         with:
           update: false
