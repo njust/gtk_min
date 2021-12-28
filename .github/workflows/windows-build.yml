@@ -43,6 +43,7 @@ jobs:
             mingw-w64-x86_64-glslang
             mingw-w64-x86_64-iso-codes
             mingw-w64-x86_64-glm
+            mingw-w64-gst-plugins-bad
       - name: Clone gtk repo
         run: git clone https://gitlab.gnome.org/GNOME/gtksourceview.git
       - name: Checkout tag
