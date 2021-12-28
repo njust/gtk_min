@@ -24,7 +24,7 @@ jobs:
             mingw-w64-x86_64-gtk4
             mingw-w64-x86_64-toolchain
             mingw-w64-x86_64-gtksourceview5
-            mingw-w64-x86_64-glib2-devel
+            mingw-w64-x86_64-glib2
             mingw-w64-x86_64-pango
             mingw-w64-x86_64-cairo
             mingw-w64-x86_64-vulkan-devel
