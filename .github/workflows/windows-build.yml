@@ -20,7 +20,6 @@ jobs:
       - name: Create build dir
         if: steps.gtk-build-cache.outputs.cache-hit != 'true'
         run: mkdir -p gtkbuild
-        working-directory: /tmp
       - uses: msys2/setup-msys2@v2
         with:
           update: false
@@ -50,7 +49,7 @@ jobs:
             mingw-w64-x86_64-iso-codes
             mingw-w64-x86_64-glm
       - name: Clone gtk repo
-        run: msys2 -c 'git clone https://gitlab.gnome.org/GNOME/gtksourceview.git'
+        run: git clone https://gitlab.gnome.org/GNOME/gtksourceview.git
       - name: Checkout tag
         working-directory: gtksourceview
-        run: msys2 -c 'git checkout tags/5.2.0'
+        run: git checkout tags/5.2.0
