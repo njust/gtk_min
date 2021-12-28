@@ -30,3 +30,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Cargo build
         run: msys2 -c 'cargo build --release'
+      - name: Generate Bundle
+        run: .\generate-windows-bundle.ps1
+        shell: powershell
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Bundle
+          path: bundle
