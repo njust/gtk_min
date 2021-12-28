@@ -21,6 +21,7 @@ jobs:
           path-type: inherit
           install: >-
             base-devel
+            libpcre2_8
             mingw-w64-x86_64-toolchain
             mingw-w64-x86_64-meson
             mingw-w64-x86_64-pkg-config
