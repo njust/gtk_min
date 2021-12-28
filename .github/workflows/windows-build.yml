@@ -64,7 +64,7 @@ jobs:
         run: mkdir -p gtkbuild
       - name: Configure
         if: steps.gtk-build-cache.outputs.cache-hit != 'true'
-        run: msys2 -c 'meson -Dbuildtype=plain --prefix=/opt/gtk gtkbuild'
+        run: msys2 -c 'meson configure --buildtype=plain --prefix=/opt/gtk gtkbuild'
         working-directory: gtksourceview
       - name: Build gtk
         if: steps.gtk-build-cache.outputs.cache-hit != 'true'
