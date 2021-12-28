@@ -23,8 +23,14 @@ jobs:
             base-devel
             mingw-w64-x86_64-gtk4
             mingw-w64-x86_64-gtksourceview5
+            mingw-w64-x86_64-glib2
+            mingw-w64-x86_64-pango
+            mingw-w64-x86_64-cairo
+            mingw-w64-x86_64-vulkan-devel
+            mingw-w64-x86_64-atk
+            mingw-w64-x86_64-gdk-pixbuf2
       - name: Install Windows GNU Toolchain
         run: rustup default stable-x86_64-pc-windows-gnu
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2y
       - name: Cargo build
         run: msys2 -c 'cargo build --release'
