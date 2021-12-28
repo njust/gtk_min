@@ -69,4 +69,4 @@ jobs:
       - name: Build gtk
         if: steps.gtk-build-cache.outputs.cache-hit != 'true'
         run: msys2 -c 'ninja && ninja install'
-        working-directory: gtkbuild
+        working-directory: gtksourceview/gtkbuild
