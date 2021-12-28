@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 TARGET_DIR=target/AppDir
 APP_NAME=gtk_min
 
@@ -15,11 +15,19 @@ mkdir "$BIN_DIR"
 mkdir "$LIB_DIR"
 mkdir "$SHARE_DIR"
 
-cp "target/release/$APP_NAME" "$BIN_DIR/bin"
-cp -r /opt/gtk/lib/x86_64-linux-gnu/* $LIB_DIR
+LIBS=("libgtk-4.so.1.500.0" "libgtk-4.so.1" "libgtk-4.so" "libgio-2.0.so.0.7100.0" "libgio-2.0.so.0" "libgio-2.0.so" "libglib-2.0.so.0.7100.0" "libglib-2.0.so.0" "libglib-2.0.so"
+"libgtksourceview-5.so.0.0.0" "libgtksourceview-5.so.0" "libgtksourceview-5.so" "libgobject-2.0.so.0.7100.0" "libgobject-2.0.so.0" "libgobject-2.0.so" "libpango-1.0.so.0.5000.0"
+"libpango-1.0.so.0" "libpango-1.0.so" "libgraphene-1.0.so.0.1000.7" "libgraphene-1.0.so.0" "libgraphene-1.0.so" "libpangoft2-1.0.so.0.5000.0" "libpangoft2-1.0.so.0" "libpangoft2-1.0.so"
+"libpangocairo-1.0.so.0.5000.0" "libpangocairo-1.0.so.0" "libpangocairo-1.0.so" "libpangoxft-1.0.so.0.5000.0" "libpangoxft-1.0.so.0" "libpangoxft-1.0.so" "libgmodule-2.0.so.0.7100.0"
+"libgmodule-2.0.so.0" "libgmodule-2.0.so" "libgthread-2.0.so.0.7100.0" "libgthread-2.0.so.0" "libgthread-2.0.so"
+)
 
-ls -lRh $LIB_DIR
-du -k $LIB_DIR -h
+for FILE in "${LIBS[@]}"
+do
+  cp -r "/opt/gtk/lib/x86_64-linux-gnu/$FILE" $LIB_DIR
+done
+
+cp "target/release/$APP_NAME" "$BIN_DIR/bin"
 
 APP_RUN_SCRIPT="$TARGET_DIR/AppRun"
 echo '#!/bin/sh
