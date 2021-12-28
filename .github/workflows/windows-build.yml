@@ -24,7 +24,6 @@ jobs:
             pcre2-devel
             pcre-devel
             libpcre2_16
-            libpcre2_23
             libpcre2posix
             mingw-w64-x86_64-toolchain
             mingw-w64-x86_64-meson
