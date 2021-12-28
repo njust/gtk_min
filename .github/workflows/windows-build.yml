@@ -21,6 +21,7 @@ jobs:
           path-type: inherit
           install: >-
             base-devel
+            mingw-w64-clang-x86_64-libssp
             mingw-w64-x86_64-gcc
             mingw-w64-x86_64-pcre2
             mingw-w64-x86_64-vala
