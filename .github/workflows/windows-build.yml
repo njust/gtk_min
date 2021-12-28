@@ -21,8 +21,6 @@ jobs:
           path-type: inherit
           install: >-
             base-devel
-            mingw-w64-clang-x86_64-libssp
-            mingw-w64-x86_64-gcc
             mingw-w64-x86_64-pcre2
             mingw-w64-x86_64-vala
             mingw-w64-x86_64-toolchain
@@ -66,7 +64,7 @@ jobs:
         run: mkdir -p gtkbuild
       - name: Configure
         if: steps.gtk-build-cache.outputs.cache-hit != 'true'
-        run: msys2 -c 'meson --prefix=/opt/gtk gtkbuild'
+        run: msys2 -c 'meson -Dbuildtype=plain --prefix=/opt/gtk gtkbuild'
         working-directory: gtksourceview
       - name: Build gtk
         if: steps.gtk-build-cache.outputs.cache-hit != 'true'
