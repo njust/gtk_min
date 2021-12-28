@@ -1,0 +1,52 @@
+name: Windows Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+      - name: Install Windows GNU Toolchain
+        run: rustup default stable-x86_64-pc-windows-gnu
+      - uses: msys2/setup-msys2@v2
+        with:
+          update: false
+          path-type: inherit
+          install: >-
+            base-devel
+            mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-meson
+            mingw-w64-x86_64-pkg-config
+            mingw-w64-x86_64-glib2
+            mingw-w64-x86_64-pango
+            mingw-w64-x86_64-cairo
+            mingw-w64-x86_64-vulkan-devel
+            mingw-w64-x86_64-atk
+            mingw-w64-x86_64-gdk-pixbuf2
+            mingw-w64-x86_64-gobject-introspection
+            mingw-w64-x86_64-libepoxy
+            mingw-w64-x86_64-graphene
+            mingw-w64-x86_64-ffmpeg
+            mingw-w64-x86_64-cmake
+            mingw-w64-x86_64-hicolor-icon-theme
+            mingw-w64-x86_64-libsass
+            mingw-w64-x86_64-sassc
+            mingw-w64-x86_64-glsl-optimizer-git
+            mingw-w64-x86_64-hlsl2glsl-git
+            mingw-w64-x86_64-glslang
+            mingw-w64-x86_64-iso-codes
+            mingw-w64-x86_64-glm
+      - name: Clone gtk repo
+        run: msys2 -c 'git clone https://gitlab.gnome.org/GNOME/gtksourceview.git'
+      - name: Checkout tag
+        working-directory: gtksourceview
+        run: msys2 -c 'git checkout tags/5.2.0'
