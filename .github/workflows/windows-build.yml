@@ -46,8 +46,11 @@ jobs:
         with:
           name: Bundle
           path: bundle
+      - uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r gtk_min.zip bundle
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: bundle
+          files: gtk_min.zip
