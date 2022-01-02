@@ -11,3 +11,6 @@ foreach($lib in $libs)
 {
     copy $libSrc\$lib .\bundle
 }
+
+
+Compress-Archive -Path bundle -DestinationPath Windows_x64.zip
