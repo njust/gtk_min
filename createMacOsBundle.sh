@@ -3,6 +3,8 @@
 APP_NAME="GtkMin.app"
 BIN_NAME="gtk_min"
 
+echo "test\n"
+
 mv "./target/release/bundle/osx/$APP_NAME/Contents/MacOS/$BIN_NAME" "./target/release/bundle/osx/$APP_NAME/Contents/MacOS/$BIN_NAME"-bin
 chmod +x "./target/release/bundle/osx/$APP_NAME/Contents/MacOS/$BIN_NAME"-bin
 
