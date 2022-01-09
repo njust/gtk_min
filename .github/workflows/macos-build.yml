@@ -17,9 +17,6 @@ jobs:
     steps:
       - name: Install gtk prerequsites
         run: brew install gtk4 gtksourceview5
-      - name: Install cargo-bundle
-        run: cargo install cargo-bundle
-      - uses: actions/checkout@v2
       - uses: actions/cache@v2
         with:
           path: |
@@ -27,11 +24,8 @@ jobs:
             ~/.cargo/git
             target
           key: ${{ runner.os }}-${{ hashFiles('**/Cargo.lock') }}
+      - name: Install cargo-bundle
+        run: cargo install cargo-bundle
+      - uses: actions/checkout@v2
       - name: Build
         run: cargo-bundle bundle --release --format osx
-      - name: Generate Bundle
-        run: ./generate-macos-bundle.sh
-      - uses: actions/upload-artifact@v2
-        with:
-          name: GtkMin
-          path: target/release/bundle/osx/GtkMin.dmg
