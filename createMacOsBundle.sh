@@ -4,10 +4,7 @@ APP_NAME="GtkMin.app"
 BIN_NAME="gtk_min"
 BUNDLE_DIR="./target/release/bundle/osx/$APP_NAME"
 
-
-echo "test\n"
-
-mv ".$BUNDLE_DIR/Contents/MacOS/$BIN_NAME" "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"-bin
+mv "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME" "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"-bin
 chmod +x "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"-bin
 
 echo '#!/bin/sh
@@ -18,7 +15,6 @@ RESOURCE_DIR="$ROOT"/Resources
 
 export DYLD_LIBRARY_PATH="$LIB_DIR"
 export GTK_PATH="$LIB_DIR"
-
 export GTK_DATA_PREFIX="$RESOURCE_DIR"
 export XDG_DATA_DIRS="$RESOURCE_DIR"
 export GDK_PIXBUF_MODULE_FILE="$LIB_DIR/gdk-pixbuf-2.0/loaders.cache"
@@ -26,17 +22,14 @@ export GDK_PIXBUF_MODULEDIR="$LIB_DIR/gdk-pixbuf-2.0/loaders"
 export PANGO_LIBDIR="$LIB_DIR"
 export GTK_THEME="Mint-Y-Grey"
 
-
 "$MAC_OS_DIR/gdk-pixbuf-query-loaders" --update-cache
 $EXEC "$MAC_OS_DIR/gtk_min-bin"
 ' > "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"
 chmod +x "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"
 
-
+LIB_SRC="/usr/local//lib"
 LIB_DIR="$BUNDLE_DIR/Contents/MacOS/lib"
 mkdir "$LIB_DIR"
-
-LIB_SRC="/usr/local//lib"
 
 cp "$LIB_SRC/libgtk-4.1.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libgio-2.0.dylib" "$LIB_DIR"
@@ -49,8 +42,27 @@ cp "$LIB_SRC/libpangoft2-1.0.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libpangocairo-1.0.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libgmodule-2.0.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libgthread-2.0.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libbrotlicommon.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libcairo.2.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libcairo-gobject.2.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libepoxy.0.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libfontconfig.1.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libfreetype.6.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libfribidi.0.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libgdk-3.0.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libgdk_pixbuf-2.0.0.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libgraphite2.3.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libgraphite2.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libharfbuzz.0.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libintl.8.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libpcre.1.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libpixman-1.0.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libpng.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libpng16.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libssl.1.1.dylib" "$LIB_DIR"
 
-#ls -lR /usr/local/
+mkdir "$LIB_DIR/gdk-pixbuf-2.0"
+mkdir "$LIB_DIR/gdk-pixbuf-2.0/loaders"
 
 cd ./target/release/bundle/osx/
 hdiutil create "$BIN_NAME".dmg -volname "$BIN_NAME Installer" -fs HFS+ -srcfolder $APP_NAME
