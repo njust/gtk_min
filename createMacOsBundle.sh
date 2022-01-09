@@ -30,6 +30,7 @@ $EXEC "$MAC_OS_DIR/gtk_min-bin"
 ' > "./target/release/bundle/osx/$APP_NAME/Contents/MacOS/$BIN_NAME"
 chmod +x "./target/release/bundle/osx/$APP_NAME/Contents/MacOS/$BIN_NAME"
 
+ls -lR /usr/local/
 
 cd ./target/release/bundle/osx/
 hdiutil create "$BIN_NAME".dmg -volname "$BIN_NAME Installer" -fs HFS+ -srcfolder $APP_NAME
