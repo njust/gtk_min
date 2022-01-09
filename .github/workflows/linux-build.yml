@@ -64,10 +64,10 @@ jobs:
         run: ./createAppImage.sh
       - uses: actions/upload-artifact@v2
         with:
-          name: Linux_x64
-          path: gtk_min
+          name: gtk_min-x86_64.AppImage
+          path: gtk_min-x86_64.AppImage
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: gtk_min
+          files: gtk_min-x86_64.AppImage

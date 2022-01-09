@@ -40,7 +40,7 @@ jobs:
       - name: Cargo build
         run: msys2 -c 'cargo build --release'
       - name: Generate Bundle
-        run: .\generate-windows-bundle.ps1
+        run: .\createWindowsBundle.ps1
         shell: powershell
       - uses: actions/upload-artifact@v2
         with:
