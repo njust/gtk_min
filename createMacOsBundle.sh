@@ -59,6 +59,7 @@ cp "$LIB_SRC/libpcre.1.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libpixman-1.0.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libpng.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libpng16.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libpng16.16.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libssl.1.1.dylib" "$LIB_DIR"
 
 mkdir "$LIB_DIR/gdk-pixbuf-2.0"
