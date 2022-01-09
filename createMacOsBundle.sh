@@ -2,11 +2,13 @@
 
 APP_NAME="GtkMin.app"
 BIN_NAME="gtk_min"
+BUNDLE_DIR="./target/release/bundle/osx/$APP_NAME"
+
 
 echo "test\n"
 
-mv "./target/release/bundle/osx/$APP_NAME/Contents/MacOS/$BIN_NAME" "./target/release/bundle/osx/$APP_NAME/Contents/MacOS/$BIN_NAME"-bin
-chmod +x "./target/release/bundle/osx/$APP_NAME/Contents/MacOS/$BIN_NAME"-bin
+mv ".$BUNDLE_DIR/Contents/MacOS/$BIN_NAME" "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"-bin
+chmod +x "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"-bin
 
 echo '#!/bin/sh
 MAC_OS_DIR=$(cd "$(dirname "$0")"; pwd)
@@ -27,10 +29,28 @@ export GTK_THEME="Mint-Y-Grey"
 
 "$MAC_OS_DIR/gdk-pixbuf-query-loaders" --update-cache
 $EXEC "$MAC_OS_DIR/gtk_min-bin"
-' > "./target/release/bundle/osx/$APP_NAME/Contents/MacOS/$BIN_NAME"
-chmod +x "./target/release/bundle/osx/$APP_NAME/Contents/MacOS/$BIN_NAME"
+' > "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"
+chmod +x "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"
 
-ls -lR /usr/local/
+
+LIB_DIR="$BUNDLE_DIR/Contents/MacOS/lib"
+mkdir "$LIB_DIR"
+
+LIB_SRC="/usr/local//lib"
+
+cp "$LIB_SRC/libgtk-4.1.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libgio-2.0.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libglib-2.0.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libgtksourceview-5.0.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libgobject-2.0.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libpango-1.0.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libgraphene-1.0.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libpangoft2-1.0.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libpangocairo-1.0.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libgmodule-2.0.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libgthread-2.0.dylib" "$LIB_DIR"
+
+#ls -lR /usr/local/
 
 cd ./target/release/bundle/osx/
 hdiutil create "$BIN_NAME".dmg -volname "$BIN_NAME Installer" -fs HFS+ -srcfolder $APP_NAME
