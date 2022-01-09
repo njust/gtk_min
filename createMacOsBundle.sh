@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 APP_NAME="GtkMin.app"
 BIN_NAME="gtk_min"
