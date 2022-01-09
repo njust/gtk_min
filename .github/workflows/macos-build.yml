@@ -34,4 +34,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: GtkMin
-          path: target/release/bundle/osx/GtkMin.dmg
+          path: target/release/bundle/osx/gtk_min.dmg
