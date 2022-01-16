@@ -30,6 +30,7 @@ chmod +x "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"
 LIB_SRC="/usr/local//lib"
 LIB_DIR="$BUNDLE_DIR/Contents/MacOS/lib"
 mkdir "$LIB_DIR"
+#https://github.com/shadowsocks/shadowsocks-qt5/issues/457
 
 cp "$LIB_SRC/libgtk-4.1.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libgio-2.0.dylib" "$LIB_DIR"
@@ -57,9 +58,7 @@ cp "$LIB_SRC/libharfbuzz.0.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libintl.8.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libpcre.1.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libpixman-1.0.dylib" "$LIB_DIR"
-cp "$LIB_SRC/libpng.dylib" "$LIB_DIR"
-cp "$LIB_SRC/libpng16.dylib" "$LIB_DIR"
-cp "$LIB_SRC/libpng16.16.dylib" "$LIB_DIR"
+cp "/System/Library/Frameworks/ImageIO.framework/Resources/libPng.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libssl.1.1.dylib" "$LIB_DIR"
 
 mkdir "$LIB_DIR/gdk-pixbuf-2.0"
