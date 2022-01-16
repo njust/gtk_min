@@ -61,6 +61,7 @@ cp "$LIB_SRC/libpcre2-8.0.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libpcre.1.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libpixman-1.0.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libffi.8.dylib" "$LIB_DIR"
+cp "/opt/homebrew/opt/libffi/lib/libffi.8.dylib" "$LIB_DIR"
 #cp "/System/Library/Frameworks/ImageIO.framework/Resources/libPng.dylib" "$LIB_DIR"
 #cp "$LIB_SRC/libssl.1.1.dylib" "$LIB_DIR"
 

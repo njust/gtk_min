@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Install gtk prerequsites
-        run: brew install gtk4 gtksourceview5
+        run: brew install gtk4 gtksourceview5 libffi
       - uses: actions/cache@v2
         with:
           path: |
