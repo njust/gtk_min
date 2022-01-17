@@ -23,7 +23,7 @@ export GDK_PIXBUF_MODULEDIR="$LIB_DIR/gdk-pixbuf-2.0/loaders"
 export PANGO_LIBDIR="$LIB_DIR"
 export GTK_THEME="Mint-Y-Grey"
 
-"$MAC_OS_DIR/gdk-pixbuf-query-loaders" --update-cache
+#"$MAC_OS_DIR/gdk-pixbuf-query-loaders" --update-cache
 $EXEC "$MAC_OS_DIR/gtk_min-bin"
 ' > "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"
 chmod +x "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"
@@ -66,6 +66,7 @@ cp "$LIB_SRC/libpixman-1.0.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libcairo-script-interpreter.2.dylib" "$LIB_DIR"
 cp "/usr/lib/libffi.dylib" "$LIB_DIR/libffi.8.dylib"
 cp "$LIB_SRC/libpng16.16.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libxcb-shm.0.dylib" "$LIB_DIR"
 #cp "$LIB_SRC/libssl.1.1.dylib" "$LIB_DIR"
 
 mkdir "$LIB_DIR/gdk-pixbuf-2.0"
