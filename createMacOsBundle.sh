@@ -31,7 +31,7 @@ chmod +x "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"
 #ls -lR /usr/lib
 #ls -lR /usr/local/lib
 
-LIB_SRC="/usr/local//lib"
+LIB_SRC="/usr/lib"
 LIB_DIR="$BUNDLE_DIR/Contents/MacOS/lib"
 mkdir "$LIB_DIR"
 #https://github.com/shadowsocks/shadowsocks-qt5/issues/457
