@@ -28,7 +28,8 @@ $EXEC "$MAC_OS_DIR/gtk_min-bin"
 ' > "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"
 chmod +x "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"
 
-ls -lR /
+ls -lR /usr/lib
+ls -lR /usr/local/lib
 
 LIB_SRC="/usr/local//lib"
 LIB_DIR="$BUNDLE_DIR/Contents/MacOS/lib"
@@ -44,7 +45,7 @@ cp "$LIB_SRC/libpango-1.0.0.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libgraphene-1.0.0.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libpangoft2-1.0.0.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libpangocairo-1.0.0.dylib" "$LIB_DIR"
-cp "$LIB_SRC/libgmodule-2.0.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libgmodule-2.0.0.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libgthread-2.0.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libbrotlicommon.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libcairo.2.dylib" "$LIB_DIR"
@@ -63,8 +64,9 @@ cp "$LIB_SRC/libpcre2-8.0.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libpcre.1.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libpixman-1.0.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libffi.8.dylib" "$LIB_DIR"
-cp "/opt/homebrew/opt/libffi/lib/libffi.8.dylib" "$LIB_DIR"
-#cp "/System/Library/Frameworks/ImageIO.framework/Resources/libPng.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libcairo-script-interpreter.2.dylib" "$LIB_DIR"
+cp "/usr/lib/libffi.dylib" "$LIB_DIR/libffi.8.dylib"
+
 #cp "$LIB_SRC/libssl.1.1.dylib" "$LIB_DIR"
 
 mkdir "$LIB_DIR/gdk-pixbuf-2.0"
