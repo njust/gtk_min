@@ -28,8 +28,8 @@ $EXEC "$MAC_OS_DIR/gtk_min-bin"
 ' > "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"
 chmod +x "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"
 
-ls -lR /usr/lib
-ls -lR /usr/local/lib
+#ls -lR /usr/lib
+#ls -lR /usr/local/lib
 
 LIB_SRC="/usr/local//lib"
 LIB_DIR="$BUNDLE_DIR/Contents/MacOS/lib"
@@ -69,6 +69,7 @@ cp "$LIB_SRC/libpng16.16.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libxcb-shm.0.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libxcb.1.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libxcb-render.0.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libXrender.1.dylib" "$LIB_DIR"
 #cp "$LIB_SRC/libssl.1.1.dylib" "$LIB_DIR"
 
 mkdir "$LIB_DIR/gdk-pixbuf-2.0"
