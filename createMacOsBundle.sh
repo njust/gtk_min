@@ -68,6 +68,7 @@ cp "/usr/lib/libffi.dylib" "$LIB_DIR/libffi.8.dylib"
 cp "$LIB_SRC/libpng16.16.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libxcb-shm.0.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libxcb.1.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libxcb-render.0.dylib" "$LIB_DIR"
 #cp "$LIB_SRC/libssl.1.1.dylib" "$LIB_DIR"
 
 mkdir "$LIB_DIR/gdk-pixbuf-2.0"
