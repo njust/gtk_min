@@ -31,7 +31,7 @@ chmod +x "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"
 #ls -lR /usr/lib
 #ls -lR /usr/local/lib
 
-LIB_SRC="/usr/lib"
+LIB_SRC="/usr/local//lib"
 LIB_DIR="$BUNDLE_DIR/Contents/MacOS/lib"
 mkdir "$LIB_DIR"
 #https://github.com/shadowsocks/shadowsocks-qt5/issues/457
@@ -63,7 +63,7 @@ cp "$LIB_SRC/libpcre2-8.0.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libpcre.1.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libpixman-1.0.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libcairo-script-interpreter.2.dylib" "$LIB_DIR"
-cp "$LIB_SRC/libffi.dylib" "$LIB_DIR/libffi.8.dylib"
+cp "/usr/lib/libffi.dylib" "$LIB_DIR/libffi.8.dylib"
 cp "$LIB_SRC/libpng16.16.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libxcb-shm.0.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libxcb.1.dylib" "$LIB_DIR"
