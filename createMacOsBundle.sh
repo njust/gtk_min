@@ -73,6 +73,7 @@ cp "$LIB_SRC/libXrender.1.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libX11.6.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libXext.6.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libXau.6.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libXdmcp.6.dylib" "$LIB_DIR"
 #cp "$LIB_SRC/libssl.1.1.dylib" "$LIB_DIR"
 
 mkdir "$LIB_DIR/gdk-pixbuf-2.0"
