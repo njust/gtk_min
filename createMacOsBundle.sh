@@ -79,7 +79,7 @@ cp "$LIB_SRC/liblzo2.2.dylib" "$LIB_DIR"
 mkdir "$LIB_DIR/gdk-pixbuf-2.0"
 cp -R /usr/local/lib/gdk-pixbuf-2.0/2.10.0/ "$LIB_DIR/gdk-pixbuf-2.0"
 
-cp -R /usr/local/Cellar/gtk4/4.4.1/share/glib-2.0 "$BUNDLE_RES_DIR"
+cp -R /usr/local/share/glib-2.0 "$BUNDLE_RES_DIR"
 cp -R /usr/local/share/icons "$BUNDLE_RES_DIR"
 
 cd ./target/release/bundle/osx/
