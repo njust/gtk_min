@@ -1,8 +1,14 @@
+use std::rc::Rc;
 use gtk4_helper::{
+    prelude::*,
     gtk::prelude::*,
+    gtk,
+    glib,
     gtk::{Application, ApplicationWindow}
 };
-use sourceview5::prelude::*;
+use crate::app::{App, AppMsg};
+use crate::gtk::Orientation;
+mod app;
 
 
 fn main() {
@@ -11,23 +17,23 @@ fn main() {
         .build();
 
     app.connect_activate(|app| {
-        let window = ApplicationWindow::builder()
+        let window = Rc::new(ApplicationWindow::builder()
             .application(app)
             .default_width(320)
             .default_height(200)
             .title("Hello, World!!")
-            .build();
+            .build());
 
-        let buffer = sourceview5::Buffer::new(None);
-        let view = sourceview5::View::with_buffer(&buffer);
-        view.set_monospace(true);
-        view.set_background_pattern(sourceview5::BackgroundPatternType::Grid);
-        view.set_show_line_numbers(true);
-        view.set_highlight_current_line(true);
-        view.set_tab_width(4);
-        view.set_hexpand(true);
+        let (tx, rx) = glib::MainContext::channel(glib::PRIORITY_DEFAULT);
+        let mut app = App::new_with_data(move |msg| {
+            tx.send(msg).expect("Could not send msg");
+        }, window.clone());
+        window.set_child(Some(app.view()));
+        rx.attach(None, move |msg| {
+            app.update(msg);
+            glib::Continue(true)
+        });
 
-        window.set_child(Some(&view));
         window.show();
     });
 

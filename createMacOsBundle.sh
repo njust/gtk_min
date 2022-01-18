@@ -3,9 +3,12 @@
 APP_NAME="GtkMin.app"
 BIN_NAME="gtk_min"
 BUNDLE_DIR="./target/release/bundle/osx/$APP_NAME"
+BUNDLE_CONTENT_DIR="$BUNDLE_DIR/Contents"
+BUNDLE_MACOS_DIR="$BUNDLE_CONTENT_DIR/MacOS"
+BUNDLE_RES_DIR="$BUNDLE_CONTENT_DIR/Resources"
 
-mv "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME" "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"-bin
-chmod +x "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"-bin
+mv "$BUNDLE_MACOS_DIR/$BIN_NAME" "$BUNDLE_MACOS_DIR/$BIN_NAME"-bin
+chmod +x "$BUNDLE_MACOS_DIR/$BIN_NAME"-bin
 
 echo '#!/bin/sh
 MAC_OS_DIR=$(cd "$(dirname "$0")"; pwd)
@@ -25,11 +28,8 @@ export GTK_THEME="Mint-Y-Grey"
 
 #"$MAC_OS_DIR/gdk-pixbuf-query-loaders" --update-cache
 $EXEC "$MAC_OS_DIR/gtk_min-bin"
-' > "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"
-chmod +x "$BUNDLE_DIR/Contents/MacOS/$BIN_NAME"
-
-#ls -lR /usr/lib
-#ls -lR /usr/local/lib
+' > "$BUNDLE_MACOS_DIR/$BIN_NAME"
+chmod +x "$BUNDLE_MACOS_DIR/$BIN_NAME"
 
 LIB_SRC="/usr/local//lib"
 LIB_DIR="$BUNDLE_DIR/Contents/MacOS/lib"
@@ -77,7 +77,11 @@ cp "$LIB_SRC/libjpeg.9.dylib" "$LIB_DIR"
 cp "$LIB_SRC/liblzo2.2.dylib" "$LIB_DIR"
 
 mkdir "$LIB_DIR/gdk-pixbuf-2.0"
-mkdir "$LIB_DIR/gdk-pixbuf-2.0/loaders"
+cp -R /usr/local/lib/gdk-pixbuf-2.0/2.10.0/ "$LIB_DIR/gdk-pixbuf-2.0"
+
+mkdir "$BUNDLE_RES_DIR/glib-2.0/"
+cp -R /usr/local/Cellar/gtk4/4.4.1/share/glib-2.0/schemas "$BUNDLE_RES_DIR/glib-2.0/"
+cp -R /usr/local/share/icons "$BUNDLE_RES_DIR"
 
 cd ./target/release/bundle/osx/
 hdiutil create "$BIN_NAME".dmg -volname "$BIN_NAME Installer" -fs HFS+ -srcfolder $APP_NAME
