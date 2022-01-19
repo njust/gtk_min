@@ -15,7 +15,16 @@ jobs:
     runs-on: macos-10.15
 
     steps:
-      - name: install gtk build system
-        run: /bin/bash -c "$(curl -fsSL https://gitlab.gnome.org/GNOME/gtk-osx/-/raw/master/gtk-osx-setup.sh)"
-      - name: test 1
-        run: ~/.new_local/bin/jhbuild shell && alias jhbuild="PATH=.new_local/bin:$PATH jhbuild" && jhbuild bootstrap-gtk-osx && jhbuild build meta-gtk-osx-bootstrap meta-gtk-osx-gtk4
+      - name: Install gtk prerequsites
+        run: brew install gtk4 gtksourceview5 adwaita-icon-theme openssl@1.1
+      - name: Install cargo-bundle
+        run: cargo install cargo-bundle
+      - uses: actions/checkout@v2
+      - name: Build
+        run: cargo-bundle bundle --release --format osx
+      - name: Generate Bundle
+        run: ./createMacOsBundle.sh
+      - uses: actions/upload-artifact@v2
+        with:
+          name: GtkMin
+          path: target/release/bundle/osx/gtk_min.dmg

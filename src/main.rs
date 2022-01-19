@@ -1,15 +1,5 @@
 use std::rc::Rc;
-use gtk4_helper::{
-    prelude::*,
-    gtk::prelude::*,
-    gtk,
-    glib,
-    gtk::{Application, ApplicationWindow}
-};
-use crate::app::{App, AppMsg};
-use crate::gtk::Orientation;
-mod app;
-
+use gtk::{Application, ApplicationWindow, Orientation, prelude::*};
 
 fn main() {
     let app = Application::builder()
@@ -24,16 +14,31 @@ fn main() {
             .title("Hello, World!!")
             .build());
 
-        let (tx, rx) = glib::MainContext::channel(glib::PRIORITY_DEFAULT);
-        let mut app = App::new_with_data(move |msg| {
-            tx.send(msg).expect("Could not send msg");
-        }, window.clone());
-        window.set_child(Some(app.view()));
-        rx.attach(None, move |msg| {
-            app.update(msg);
-            glib::Continue(true)
-        });
+        let toolbar = gtk::Box::new(Orientation::Horizontal, 0);
+        let btn = gtk::Button::with_label("Open");
+        toolbar.append(&btn);
 
+        let buffer = sourceview5::Buffer::new(None);
+        let view = sourceview5::View::builder()
+            .buffer(&buffer)
+            .monospace(true)
+            .show_line_numbers(true)
+            .highlight_current_line(true)
+            .hexpand(true)
+            .vexpand(true)
+            .build();
+
+        let container = gtk::Box::new(Orientation::Vertical, 0);
+        let spinner = gtk::Spinner::new();
+        spinner.set_height_request(32);
+        spinner.set_width_request(32);
+        spinner.start();
+
+        container.append(&spinner);
+        container.append(&toolbar);
+        container.append(&view);
+
+        window.set_child(Some(&container));
         window.show();
     });
 
