@@ -43,6 +43,12 @@ impl Component for App {
             .build();
 
         let container = gtk::Box::new(Orientation::Vertical, 0);
+        let spinner = gtk::Spinner::new();
+        spinner.set_height_request(32);
+        spinner.set_width_request(32);
+        spinner.start();
+
+        container.append(&spinner);
         let wnd = input.expect("No wnd!");
         container.append(&toolbar);
         container.append(&view);
