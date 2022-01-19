@@ -31,7 +31,9 @@ $EXEC "$MAC_OS_DIR/gtk_min-bin"
 ' > "$BUNDLE_MACOS_DIR/$BIN_NAME"
 chmod +x "$BUNDLE_MACOS_DIR/$BIN_NAME"
 
-LIB_SRC="/usr/local//lib"
+ls -R /usr/local
+
+LIB_SRC="/usr/local/lib"
 LIB_DIR="$BUNDLE_DIR/Contents/MacOS/lib"
 mkdir "$LIB_DIR"
 #https://github.com/shadowsocks/shadowsocks-qt5/issues/457
