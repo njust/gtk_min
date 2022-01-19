@@ -83,7 +83,7 @@ cp -R /usr/local/lib/gdk-pixbuf-2.0/2.10.0/ "$LIB_DIR/gdk-pixbuf-2.0"
 cp -R /usr/local/share/glib-2.0 "$BUNDLE_RES_DIR"
 
 mkdir "$BUNDLE_RES_DIR/icons"
-cp -R /usr/local/share/icons/Adwaita "$BUNDLE_RES_DIR"
+cp -R /usr/local/share/icons/Adwaita "$BUNDLE_RES_DIR/icons"
 
 cd ./target/release/bundle/osx/
 hdiutil create "$BIN_NAME".dmg -volname "$BIN_NAME Installer" -fs HFS+ -srcfolder $APP_NAME
