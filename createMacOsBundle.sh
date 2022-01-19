@@ -77,6 +77,7 @@ cp "$LIB_SRC/libXau.6.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libXdmcp.6.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libjpeg.9.dylib" "$LIB_DIR"
 cp "$LIB_SRC/liblzo2.2.dylib" "$LIB_DIR"
+cp "$LIB_SRC/libssl.1.1.dylib" "$LIB_DIR"
 
 mkdir "$LIB_DIR/gdk-pixbuf-2.0"
 cp -R -L /usr/local/lib/gdk-pixbuf-2.0/2.10.0/ "$LIB_DIR/gdk-pixbuf-2.0"
