@@ -77,7 +77,7 @@ cp "$LIB_SRC/libjpeg.9.dylib" "$LIB_DIR"
 cp "$LIB_SRC/liblzo2.2.dylib" "$LIB_DIR"
 
 mkdir "$LIB_DIR/gdk-pixbuf-2.0"
-cp -R /usr/local/lib/gdk-pixbuf-2.0/2.10.0/ "$LIB_DIR/gdk-pixbuf-2.0"
+cp -R -L /usr/local/lib/gdk-pixbuf-2.0/2.10.0/ "$LIB_DIR/gdk-pixbuf-2.0"
 
 # Copy glib schemas (for file chooser dlg, etc)
 cp -R /usr/local/share/glib-2.0 "$BUNDLE_RES_DIR"
