@@ -15,8 +15,6 @@ jobs:
     runs-on: macos-10.15
 
     steps:
-      - name: Install other prerequsites
-        run: brew adwaita-icon-theme openssl@1.1
       - uses: actions/cache@v2
         with:
           path: |
@@ -54,6 +52,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build
         run: cargo-bundle bundle --release --format osx
+      - name: Install other prerequsites
+        run: brew install adwaita-icon-theme openssl@1.1
       - name: Generate Bundle
         run: ./createMacOsBundle.sh
       - uses: actions/upload-artifact@v2
