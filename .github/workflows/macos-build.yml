@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Install gtk prerequsites
-        run: brew install gtk4 gtksourceview5 adwaita-icon-theme openssl@1.1 librsvg
+        run: brew install gtk4 gtksourceview5 adwaita-icon-theme openssl@1.1
       - uses: actions/cache@v2
         with:
           path: |
