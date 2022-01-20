@@ -15,9 +15,9 @@ jobs:
     runs-on: macos-10.15
 
     steps:
+      - name: Install gtk
+        run: brew tap-new local/gtk4 && brew extract --version 4.4.1 gtk4 local/gtk4 && brew install local/gtk4@4.4.1
       - name: Install gtk prerequsites
-        run: brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/c163ac5c815d26b98d3cee8e01028749be02621f/Formula/gtk4.rb
-      - name: Install more prerequsites
         run: brew install gtksourceview5 adwaita-icon-theme openssl@1.1
       - uses: actions/cache@v2
         with:
