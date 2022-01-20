@@ -15,6 +15,8 @@ jobs:
     runs-on: macos-10.15
 
     steps:
+      - name: install gtk build system
+        run: /bin/bash -c "$(curl -fsSL https://gitlab.gnome.org/GNOME/gtk-osx/-/raw/master/gtk-osx-setup.sh)"
       - name: Install other prerequsites
         run: brew install meson adwaita-icon-theme openssl@1.1
       - uses: actions/cache@v2
