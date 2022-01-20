@@ -16,9 +16,9 @@ jobs:
 
     steps:
       - name: Install gtk
-        run: brew tap-new local/old && brew extract --version 4.4.1 gtk4 local/old && brew install local/old/gtk4@4.4.1
+        run: brew tap-new local/old && brew extract --version 5.0.0 gtksourceview5 local/old && brew install local/old/gtksourceview5@5.0.0
       - name: Install gtk prerequsites
-        run: brew install gtksourceview5 adwaita-icon-theme openssl@1.1
+        run: brew install adwaita-icon-theme openssl@1.1
       - uses: actions/cache@v2
         with:
           path: |
