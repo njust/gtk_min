@@ -15,10 +15,6 @@ jobs:
     runs-on: macos-10.15
 
     steps:
-      - name: Install gtk
-        run: brew tap-new local/old && brew extract --version 4.4.1 gtk4 local/old && brew install local/old/gtk4@4.4.1
-      - name: Install gtksourceview
-        run: brew tap-new local/oldsv && brew extract --version 5.0.0 gtksourceview5 local/oldsv && brew install local/oldsv/gtksourceview5@5.0.0
       - name: Install other prerequsites
         run: brew adwaita-icon-theme openssl@1.1
       - uses: actions/cache@v2
@@ -28,6 +24,31 @@ jobs:
             ~/.cargo/git
             target
           key: ${{ runner.os }}-${{ hashFiles('**/Cargo.lock') }}
+      - name: Clone gtk repo
+        run: git clone https://gitlab.gnome.org/GNOME/gtksourceview.git
+      - name: Checkout tag
+        working-directory: gtksourceview
+        run: git checkout tags/5.2.0
+      - name: Cache gtk build
+        uses: actions/cache@v2
+        id: gtk-build-cache
+        with:
+          path: |
+            /tmp/gtkbuild
+            /opt/gtk
+          key: ${{ runner.os }}-${{ hashFiles('gtksourceview/.git/HEAD') }}
+      - name: Create build dir
+        if: steps.gtk-build-cache.outputs.cache-hit != 'true'
+        run: mkdir -p gtkbuild
+        working-directory: /tmp
+      - name: Configure
+        if: steps.gtk-build-cache.outputs.cache-hit != 'true'
+        run: meson --prefix=/opt/gtk /tmp/gtkbuild
+        working-directory: gtksourceview
+      - name: Build gtk
+        if: steps.gtk-build-cache.outputs.cache-hit != 'true'
+        run: ninja && ninja install
+        working-directory: /tmp/gtkbuild
       - name: Install cargo-bundle
         run: cargo install cargo-bundle
       - uses: actions/checkout@v2
