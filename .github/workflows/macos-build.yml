@@ -17,5 +17,48 @@ jobs:
     steps:
       - name: install gtk build system
         run: /bin/bash -c "$(curl -fsSL https://gitlab.gnome.org/GNOME/gtk-osx/-/raw/master/gtk-osx-setup.sh)"
-      - name: test 1
-        run: ~/.new_local/bin/jhbuild shell && alias jhbuild="PATH=.new_local/bin:$PATH jhbuild" && jhbuild bootstrap-gtk-osx && jhbuild build meta-gtk-osx-bootstrap meta-gtk-osx-gtk4
+      - name: Install other prerequsites
+        run: brew install meson adwaita-icon-theme openssl@1.1
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-${{ hashFiles('**/Cargo.lock') }}
+      - name: Clone gtk repo
+        run: git clone https://gitlab.gnome.org/GNOME/gtksourceview.git
+      - name: Checkout tag
+        working-directory: gtksourceview
+        run: git checkout tags/5.2.0
+      - name: Cache gtk build
+        uses: actions/cache@v2
+        id: gtk-build-cache
+        with:
+          path: |
+            /tmp/gtkbuild
+            /opt/gtk
+          key: ${{ runner.os }}-${{ hashFiles('gtksourceview/.git/HEAD') }}
+      - name: Create build dir
+        if: steps.gtk-build-cache.outputs.cache-hit != 'true'
+        run: mkdir -p gtkbuild
+        working-directory: /tmp
+      - name: Configure
+        if: steps.gtk-build-cache.outputs.cache-hit != 'true'
+        run: meson --prefix=/opt/gtk /tmp/gtkbuild
+        working-directory: gtksourceview
+      - name: Build gtk
+        if: steps.gtk-build-cache.outputs.cache-hit != 'true'
+        run: ninja && ninja install
+        working-directory: /tmp/gtkbuild
+      - name: Install cargo-bundle
+        run: cargo install cargo-bundle
+      - uses: actions/checkout@v2
+      - name: Build
+        run: cargo-bundle bundle --release --format osx
+      - name: Generate Bundle
+        run: ./createMacOsBundle.sh
+      - uses: actions/upload-artifact@v2
+        with:
+          name: GtkMin
+          path: target/release/bundle/osx/gtk_min.dmg
