@@ -19,7 +19,8 @@ fn main() {
     app.connect_activate(|app| {
         let window = gtk::ApplicationWindow::new(app);
         window.set_title(Some("KTail"));
-        window.set_default_size(1024, 768);
+        window.set_default_size(1200, 700);
+        window.set_maximized(true);
         let window = Rc::new(window);
 
         let (tx, rx) = glib::MainContext::channel(glib::PRIORITY_DEFAULT);
