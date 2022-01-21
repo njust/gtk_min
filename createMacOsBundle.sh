@@ -31,6 +31,8 @@ $EXEC "$MAC_OS_DIR/gtk_min-bin"
 ' > "$BUNDLE_MACOS_DIR/$BIN_NAME"
 chmod +x "$BUNDLE_MACOS_DIR/$BIN_NAME"
 
+ls -R /usr/local
+
 LIB_SRC="/usr/local/lib"
 LIB_DIR="$BUNDLE_DIR/Contents/MacOS/lib"
 mkdir "$LIB_DIR"
@@ -76,7 +78,6 @@ cp "$LIB_SRC/libXdmcp.6.dylib" "$LIB_DIR"
 cp "$LIB_SRC/libjpeg.9.dylib" "$LIB_DIR"
 cp "$LIB_SRC/liblzo2.2.dylib" "$LIB_DIR"
 cp "/usr/local/Cellar/openssl@1.1/1.1.1m/lib/libssl.1.1.dylib" "$LIB_DIR"
-cp "$LIB_SRC/libtiff.5.dylib" "$LIB_DIR"
 
 mkdir "$LIB_DIR/gdk-pixbuf-2.0"
 cp -R -L /usr/local/lib/gdk-pixbuf-2.0/2.10.0 "$LIB_DIR/gdk-pixbuf-2.0"
