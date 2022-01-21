@@ -17,12 +17,10 @@ fn main() {
         .build();
 
     app.connect_activate(|app| {
-        let window = Rc::new(ApplicationWindow::builder()
-            .application(app)
-            .default_width(320)
-            .default_height(200)
-            .title("Hello, World!!")
-            .build());
+        let window = gtk::ApplicationWindow::new(app);
+        window.set_title(Some("KTail"));
+        window.set_default_size(1600, 768);
+        let window = Rc::new(window);
 
         let (tx, rx) = glib::MainContext::channel(glib::PRIORITY_DEFAULT);
         let mut app = App::new_with_data(move |msg| {
