@@ -32,6 +32,7 @@ $EXEC "$MAC_OS_DIR/gtk_min-bin"
 chmod +x "$BUNDLE_MACOS_DIR/$BIN_NAME"
 
 ls -R /usr/local
+ls -R /usr/lib
 
 LIB_SRC="/usr/local/lib"
 LIB_DIR="$BUNDLE_DIR/Contents/MacOS/lib"
