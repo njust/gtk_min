@@ -49,6 +49,7 @@ do
   cp -r "/opt/gtk/lib/x86_64-linux-gnu/$LIB"* $LIB_DIR
 done
 
+ll $LIB_DIR
 
 SHARE_CP_PATHS=("glib-2.0/schemas/")
 for CP_PATH in "${SHARE_CP_PATHS[@]}"
