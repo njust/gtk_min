@@ -47,7 +47,7 @@ jobs:
         working-directory: /tmp/gtkBuild
 
       - name: Clone gtk sourceview repo
-          run: git clone https://gitlab.gnome.org/GNOME/gtksourceview.git
+        run: git clone https://gitlab.gnome.org/GNOME/gtksourceview.git
       - name: Checkout tag
         working-directory: gtksourceview
         run: git checkout tags/5.2.0
