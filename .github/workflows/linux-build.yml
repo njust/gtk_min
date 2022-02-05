@@ -32,49 +32,21 @@ jobs:
           path: |
             /tmp/gtkBuild
             /opt/gtk
-          key: ${{ runner.os }}-${{ hashFiles('gtksourceview/.git/HEAD') }}
+          key: ${{ runner.os }}-${{ hashFiles('gtk/.git/HEAD') }}
       - name: Create gtk build dir
         if: steps.gtk-build-cache.outputs.cache-hit != 'true'
-        run: mkdir -p gtkSourceviewBuild
+        run: mkdir -p gtkBuild
         working-directory: /tmp
       - name: Configure sourceview
         if: steps.gtk-build-cache.outputs.cache-hit != 'true'
         run: meson --prefix=/opt/gtk /tmp/gtkBuild
-        working-directory: gtksourceview
-      - name: Build gtk sourceview
+        working-directory: gtk
+      - name: Build gtk
         if: steps.gtk-build-cache.outputs.cache-hit != 'true'
         run: ninja && ninja install
         working-directory: /tmp/gtkBuild
 
-      - name: Clone gtk sourceview repo
-        run: git clone https://gitlab.gnome.org/GNOME/gtksourceview.git
-      - name: Checkout tag
-        working-directory: gtksourceview
-        run: git checkout tags/5.2.0
-      - name: Cache gtk sourceview build
-        uses: actions/cache@v2
-        id: gtk-sourceview-build-cache
-        with:
-          path: |
-            /tmp/gtkSourceviewBuild
-            /opt/gtkSourceView
-          key: ${{ runner.os }}-${{ hashFiles('gtksourceview/.git/HEAD') }}
-      - name: Create sourceview build dir
-        if: steps.gtk-sourceview-build-cache.outputs.cache-hit != 'true'
-        run: mkdir -p gtkSourceviewBuild
-        working-directory: /tmp
-      - name: Configure sourceview
-        if: steps.gtk-sourceview-build-cache.outputs.cache-hit != 'true'
-        run: meson --prefix=/opt/gtkSourceView /tmp/gtkSourceviewBuild
-        env:
-          PKG_CONFIG_PATH: /opt/gtk/lib/x86_64-linux-gnu/pkgconfig
-        working-directory: gtksourceview
-      - name: Build gtk sourceview
-        if: steps.gtk-sourceview-build-cache.outputs.cache-hit != 'true'
-        run: ninja && ninja install
-        working-directory: /tmp/gtkSourceviewBuild
-        env:
-          PKG_CONFIG_PATH: /opt/gtk/lib/x86_64-linux-gnu/pkgconfig
+
 
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
