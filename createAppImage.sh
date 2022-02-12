@@ -49,9 +49,9 @@ do
   cp -r "/opt/gtk/lib/x86_64-linux-gnu/$LIB"* $LIB_DIR
 done
 
-cp -r "/opt/gtkSourceView/lib/x86_64-linux-gnu/libgtksourceview-5.so.0" $LIB_DIR
+cp "/opt/gtkSourceView/lib/x86_64-linux-gnu/libgtksourceview-5.so.0" $LIB_DIR
 
-ls -lR /opt/
+#ls -lR /opt/
 
 
 SHARE_CP_PATHS=("glib-2.0/schemas/")
