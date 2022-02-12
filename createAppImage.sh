@@ -39,7 +39,7 @@ X-AppImage-Version=0.1.0
 
 touch "$TARGET_DIR/icon.png"
 
-LIBS=("libgtk-4" "libgio-2.0" "libglib-2.0" "libgtksourceview-5" "libgobject-2.0"
+LIBS=("libgtk-4" "libgio-2.0" "libglib-2.0" "libgobject-2.0"
 "libpango-1.0" "libgraphene-1.0" "libpangoft2" "libpangocairo-1.0" "libpangoxft-1.0"
 "libgmodule-2.0" "libgthread-2.0"
 )
@@ -48,6 +48,8 @@ for LIB in "${LIBS[@]}"
 do
   cp -r "/opt/gtk/lib/x86_64-linux-gnu/$LIB"* $LIB_DIR
 done
+
+cp -r "/opt/gtk/lib/x86_64-linux-gnu/libgtksourceview-5*" $LIB_DIR
 
 ls -l $LIB_DIR
 
