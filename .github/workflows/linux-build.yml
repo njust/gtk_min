@@ -24,7 +24,7 @@ jobs:
         run: git clone https://gitlab.gnome.org/GNOME/gtk.git
       - name: Checkout tag
         working-directory: gtk
-        run: git checkout tags/4.2.1
+        run: git checkout tags/4.4.0
       - name: Cache gtk build
         uses: actions/cache@v2
         id: gtk-build-cache
