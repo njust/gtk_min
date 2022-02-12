@@ -23,6 +23,7 @@ fn main() {
         window.set_maximized(true);
         let window = Rc::new(window);
 
+
         let (tx, rx) = glib::MainContext::channel(glib::PRIORITY_DEFAULT);
         let mut app = App::new_with_data(move |msg| {
             tx.send(msg).expect("Could not send msg");
