@@ -49,7 +49,7 @@ do
   cp -r "/opt/gtk/lib/x86_64-linux-gnu/$LIB"* $LIB_DIR
 done
 
-cp -r "/opt/gtkSourceView/lib/x86_64-linux-gnu/libgtksourceview-5*" $LIB_DIR
+cp -r "/opt/gtkSourceView/lib/x86_64-linux-gnu/libgtksourceview-5.so.0" $LIB_DIR
 
 ls -lR /opt/
 
