@@ -17,9 +17,10 @@ jobs:
 
     steps:
       - name: Install build prerequsites
-        run: sudo apt-get update && sudo apt-get install -y python3-pip libxkbcommon-dev libcairo2-dev libwayland-dev libxrandr-dev libxi-dev libxcursor-dev libxdamage-dev libxinerama-dev libgstreamer1.0-dev libgstreamer-plugins-bad1.0-dev ninja-build
+        run: sudo apt-get update && sudo apt-get install -y libpango1.0-dev python3-pip libxkbcommon-dev libcairo2-dev libwayland-dev libxrandr-dev libxi-dev libxcursor-dev libxdamage-dev libxinerama-dev libgstreamer1.0-dev libgstreamer-plugins-bad1.0-dev ninja-build
       - name: Install python modules
         run: sudo python3 -m pip install meson==0.57.1
+
       - name: Clone gtk repo
         run: git clone https://gitlab.gnome.org/GNOME/gtk.git
       - name: Checkout tag
@@ -32,7 +33,7 @@ jobs:
           path: |
             /tmp/gtkBuild
             /opt/gtk
-          key: ${{ runner.os }}-${{ hashFiles('gtk/.git/HEAD') }}
+          key: ${{ runner.os }}--${{ hashFiles('gtk/.git/HEAD') }}
       - name: Create gtk build dir
         if: steps.gtk-build-cache.outputs.cache-hit != 'true'
         run: mkdir -p gtkBuild
