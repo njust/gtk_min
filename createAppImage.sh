@@ -51,7 +51,8 @@ done
 
 cp -r "/opt/gtkSourceView/lib/x86_64-linux-gnu/libgtksourceview-5*" $LIB_DIR
 
-ls -l $LIB_DIR
+ls -lR /opt/
+
 
 SHARE_CP_PATHS=("glib-2.0/schemas/")
 for CP_PATH in "${SHARE_CP_PATHS[@]}"
