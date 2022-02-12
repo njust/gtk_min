@@ -49,6 +49,7 @@ do
   cp -r "/opt/gtk/lib/x86_64-linux-gnu/$LIB"* $LIB_DIR
 done
 
+cp "/opt/pango/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0" $LIB_DIR
 cp "/opt/gtkSourceView/lib/x86_64-linux-gnu/libgtksourceview-5.so.0" $LIB_DIR
 
 #ls -lR /opt/
