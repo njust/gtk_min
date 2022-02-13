@@ -8,7 +8,7 @@ description = "Minimal Gtk App"
 
 [dependencies]
 gtk4-helper = {path = "./gtk4-helper/gtk4-helper" }
-sourceview5 = "0.4.1"
+sourceview5 = "0.3.0"
 
 # MacOS metadata
 [package.metadata.bundle]
