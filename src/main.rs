@@ -15,7 +15,6 @@ fn main() {
     let app = Application::builder()
         .application_id("org.example.HelloWorld")
         .build();
-
     app.connect_activate(|app| {
         let window = gtk::ApplicationWindow::new(app);
         window.set_title(Some("KTail"));
