@@ -25,7 +25,7 @@ jobs:
         run: git clone https://gitlab.gnome.org/GNOME/pango.git
       - name: Checkout tag
         working-directory: pango
-        run: git checkout tags/1.48.11
+        run: git checkout tags/1.49.4
       - name: Cache pango build
         uses: actions/cache@v2
         id: pango-build-cache
