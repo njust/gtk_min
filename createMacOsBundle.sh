@@ -95,7 +95,7 @@ mkdir "$BUNDLE_RES_DIR/icons"
 cp -R -L /usr/local/share/icons/Adwaita "$BUNDLE_RES_DIR/icons"
 
 mkdir "$BUNDLE_RES_DIR/themes"
-curl https://raw.githubusercontent.com/vinceliuice/WhiteSur-gtk-theme/release/WhiteSur-light-solid-40-0.tar.xz -o WhiteSur-light-solid-40-0.tar.xz
+curl https://raw.githubusercontent.com/vinceliuice/WhiteSur-gtk-theme/master/release/WhiteSur-light-solid-40-0.tar.xz -o WhiteSur-light-solid-40-0.tar.xz
 tar --xz -xvf WhiteSur-light-solid-40-0.tar.xz WhiteSur-light-solid/gtk-4.0 WhiteSur-light-solid-40-0/index.theme
 mv WhiteSur-light-solid "$BUNDLE_RES_DIR/themes"
 
